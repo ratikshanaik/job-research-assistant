@@ -5,12 +5,6 @@ st.set_page_config(page_title="AI/ML Job Research Assistant", page_icon="🔍")
 st.title("🔍 AI/ML Job Research Assistant")
 st.caption("⏳ First response may take up to a minute if the backend has been idle — it's waking up, not stuck.")
 st.caption("Ask questions about live AI/ML job postings, powered by RAG. Data sourced from Adzuna.")
-# st.markdown(
-#     '<a href="https://www.adzuna.in" target="_blank">'
-#     '<img src="app/static/adzuna_logo.png" style="height:23px; vertical-align:middle;"> '
-#     '<span style="vertical-align:middle;">Jobs by Adzuna</span></a>',
-#     unsafe_allow_html=True
-# )
 
 BACKEND_URL = "https://job-research-assistant.onrender.com/ask"
 
