@@ -25,17 +25,24 @@ if question:
     with st.chat_message("assistant"):
         with st.spinner("Searching job postings..."):
             try:
-                response = requests.post(BACKEND_URL, json={"question": question})
-                data = response.json()
-                answer = data["answer"]
-                sources = data["sources"]
+                response = requests.post(BACKEND_URL, json={"question": question}, timeout=90)
+                if not response.ok:
+                    st.error("The backend had trouble answering that. Please try again in a moment.")
+                else:
+                    data = response.json()
+                    answer = data["answer"]
+                    sources = data["sources"]
 
-                st.markdown(answer)
-                with st.expander("Sources"):
-                    for s in sources:
-                        st.write(f"- {s}")
+                    st.markdown(answer)
+                    with st.expander("Sources"):
+                        for s in sources:
+                            st.markdown(f"- [{s['title']} — {s['company']} ({s['location']})]({s['url']})")
 
-                full_reply = answer + "\n\n**Sources:**\n" + "\n".join(f"- {s}" for s in sources)
-                st.session_state.messages.append({"role": "assistant", "content": full_reply})
+                    links = "\n".join(f"- [{s['title']} — {s['company']}]({s['url']})" for s in sources)
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": answer + "\n\n**Sources:**\n" + links}
+                    )
+            except requests.exceptions.Timeout:
+                st.error("The backend took too long to respond. It may be waking up, so please try again.")
             except Exception as e:
                 st.error(f"Something went wrong: {e}")
