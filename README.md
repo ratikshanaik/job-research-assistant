@@ -5,6 +5,8 @@ A RAG-based assistant that answers natural-language questions about live AI/ML j
 **Live app:** https://job-research-assistant-wruhnhjflapnbk2jqnwpt4.streamlit.app/
 **Backend API:** https://job-research-assistant.onrender.com/docs
 
+Response from backend - https://drive.google.com/file/d/19BxAkDjR-WHgBb_2VlIk_h3dujfZBQI4/view?usp=sharing
+
 ## Why I built this
 Job-hunting means reading through dozens of nearly-identical postings to spot patterns — which skills actually recur, which companies want what. This lets you ask that directly instead of reading each one manually.
 
